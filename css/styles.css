@@ -1,0 +1,143 @@
+body {
+    font-family: "PT Sans Caption", sans-serif;
+}
+
+::selection {
+    background-color: #fec260;
+    color: #352e28;
+}
+
+.main {
+    background-color: #f7ecde;
+}
+
+.main h1 {
+    font-family: "Pacifico", cursive;
+    font-size: 50px;
+    color: #352e28;
+    z-index: 0;
+}
+
+.main h1::before {
+    background-color: #fec260;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    height: 25%;
+    transition: all 350ms;
+    z-index: -1;
+}
+
+.main h1:hover::before {
+    height: 50%;
+}
+
+.bookmark-inputs {
+    border-style: dotted;
+    border-color: #352e28;
+}
+
+.bookmark-inputs h2 {
+    font-family: "Righteous", sans-serif;
+    font-size: 25px;
+}
+
+.bookmark-inputs .title {
+    background: linear-gradient(to right, #3ca55c, #b5ac49);
+    color: transparent;
+    background-clip: text;
+}
+
+.form-control:focus {
+    outline: 0;
+    color: #212529;
+    background-color: #fff;
+    border-color: #d99c39;
+    box-shadow: 0 0 0 0.25rem #fec26055;
+}
+
+.add-btn {
+    color: #fff;
+    background-color: #d1512d;
+}
+
+.add-btn:hover {
+    color: #fff;
+    background-color: #8f3319;
+}
+
+.update-btn {
+    color: #fff;
+    background-color: #692dd1;
+}
+
+.update-btn:hover {
+    color: #fff;
+    background-color: #431d85;
+}
+
+.visit-btn {
+    color: #fff;
+    background-color: #5bb23b;
+}
+
+.visit-btn:hover {
+    color: #fff;
+    background-color: #42822a;
+}
+
+.modify-btn {
+    color: #fff;
+    background-color: #2089cf;
+}
+
+.modify-btn:hover {
+    color: #fff;
+    background-color: #145783;
+}
+
+
+.delete-btn {
+    color: #fff;
+    background-color: #eb1d36;
+}
+
+.delete-btn:hover {
+    color: #fff;
+    background-color: #920717;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.box-content {
+    width: 500px;
+    z-index: 999;
+}
+
+.box-content p {
+    font-family: "Bree Serif", serif;
+    font-size: 21px;
+    line-height: 1.75rem;
+    color: #352e28;
+}
+
+#closeBtn {
+    cursor: pointer;
+}
+
+.rules i {
+    color: #bb4120;
+}
+
+.circles span {
+    width: 20px;
+    height: 20px;
+}
