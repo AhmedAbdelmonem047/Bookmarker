@@ -75,17 +75,10 @@ siteURL.addEventListener('input', () => {
 
 
 // ----------Duplication function---------- //
-function normalizeURL(url) {
-    return url.replace(/^https?:\/\//, '');
-}
-
 function checkDuplication() {
     var flag = true;
-    var normalizedURL = normalizeURL(siteURL.value);
-
     for (var i = 0; i < bookmarkList.length; i++) {
-        var normalizedListUrl = normalizeURL(bookmarkList[i].url);
-        if ((bookmarkList[i].name.toLowerCase() == siteName.value.toLowerCase()) || (normalizedListUrl.toLowerCase() == normalizedURL.toLowerCase()))
+        if (bookmarkList[i].name.toLowerCase() == siteName.value.toLowerCase())
             flag = false
     }
     return flag;
