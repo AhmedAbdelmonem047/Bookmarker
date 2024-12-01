@@ -125,17 +125,17 @@ function displayBookmarks() {
             <td class="text-capitalize">${bookmarkList[i].name}</td>
             <td>
                 <button class="btn visit-btn" data-index="${i}">
-                    <i class="fa-solid fa-eye pe-2"></i>Visit
+                    <i class="fas fa-globe pe-2"></i>Visit
                 </button>
             </td>
             <td>
                 <button class="btn modify-btn" data-index="${i}">
-                    <i class="fa-solid fa-trash-can pe-2"></i>Modify
+                    <i class="fas fa-cog pe-2"></i>Modify
                  </button>
             </td>
             <td>
                 <button class="btn delete-btn" data-index="${i}">
-                    <i class="fa-solid fa-trash-can pe-2"></i>Delete
+                    <i class="far fa-trash-alt pe-2"></i>Delete
                  </button>
             </td>
         </tr>

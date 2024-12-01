@@ -113,17 +113,8 @@ body {
     vertical-align: middle;
 }
 
-/* .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.box-content {
-    width: 500px;
-    z-index: 999;
-}*/
-
 .rules p {
     font-family: "Bree Serif", serif;
     font-size: 18px;
     color: #352e28;
-} 
+}
