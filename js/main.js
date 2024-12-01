@@ -91,6 +91,11 @@ function addBookmark() {
             name: siteName.value,
             url: siteURL.value,
         }
+        Swal.fire({
+            title: "Added!",
+            text: "The bookmark has been added successfully",
+            icon: "success"
+        });
 
         bookmarkList.push(bookmark);
         clearInputs();
@@ -105,8 +110,8 @@ function addBookmark() {
 addBtn.addEventListener('click', addBookmark);
 // Pressing enter
 window.addEventListener('keydown', (e) => {
-    // e.preventDefault();
     if (e.key === 'Enter') {
+        e.preventDefault();
         addBookmark();
     }
 });
@@ -196,7 +201,7 @@ function deleteBookmark(index) {
             }
             Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "The bookmark has been deleted.",
                 icon: "success"
             });
         }
@@ -234,8 +239,8 @@ function setInputsForUpdate(index) {
 function updateBookmark() {
     if ((validate(siteName, nameRegex) && validate(siteURL, urlRegex) && checkDuplication()) || (siteName.value == bookmarkList[globalIndex].name) && validate(siteURL, urlRegex)) {
         Swal.fire({
-            title: "Updated Successfully",
-            text: "The bookmark has been updated",
+            title: "Updated!",
+            text: "The bookmark has been updated successfully",
             icon: "success"
         });
         bookmarkList[globalIndex].name = siteName.value;
@@ -263,7 +268,7 @@ function openModalBox() {
         html: `
         <h5 class="py-1">Something went wrong!</h5>
         <span>Rules:</span>
-        <ul class="rules py-3 list-unstyled ">
+        <ul class="rules pt-3 list-unstyled ">
             <li>
                 <p>No Duplicates</p>
             </li>
