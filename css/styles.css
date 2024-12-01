@@ -113,31 +113,17 @@ body {
     vertical-align: middle;
 }
 
-.overlay {
+/* .overlay {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .box-content {
     width: 500px;
     z-index: 999;
-}
+}*/
 
-.box-content p {
+.rules p {
     font-family: "Bree Serif", serif;
-    font-size: 21px;
-    line-height: 1.75rem;
+    font-size: 18px;
     color: #352e28;
-}
-
-#closeBtn {
-    cursor: pointer;
-}
-
-.rules i {
-    color: #bb4120;
-}
-
-.circles span {
-    width: 20px;
-    height: 20px;
-}
+} 

@@ -3,8 +3,6 @@ var siteName = document.getElementById("siteName");
 var siteURL = document.getElementById("siteURL");
 var addBtn = document.getElementById("addBtn");
 var updateBtn = document.getElementById("updateBtn");
-var closeBtn = document.getElementById("closeBtn");
-var modalBoxOverlay = document.querySelector(".overlay");
 var bookmarkList;
 var visitBtns;
 var modifyBtns;
@@ -98,7 +96,6 @@ function addBookmark() {
         clearInputs();
         saveToLocalStorage();
         displayBookmarks();
-        closeModalBox();
     }
     else {
         openModalBox();
@@ -108,6 +105,7 @@ function addBookmark() {
 addBtn.addEventListener('click', addBookmark);
 // Pressing enter
 window.addEventListener('keydown', (e) => {
+    // e.preventDefault();
     if (e.key === 'Enter') {
         addBookmark();
     }
@@ -178,10 +176,31 @@ function addAllEventListeners() {
 
 // ----------Delete bookmark function---------- //
 function deleteBookmark(index) {
-    bookmarkList.splice(index, 1);
-    saveToLocalStorage();
-    displayBookmarks();
-    console.log(index);
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            bookmarkList.splice(index, 1);
+            saveToLocalStorage();
+            displayBookmarks();
+            clearInputs();
+            if (!updateBtn.classList.contains('d-none')) {
+                updateBtn.classList.add('d-none');
+                addBtn.classList.remove('d-none');
+            }
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+        }
+    });
 }
 // -------------------------------------------- //
 
@@ -207,20 +226,21 @@ function setInputsForUpdate(index) {
     siteURL.value = bookmarkList[index].url;
     addBtn.classList.add("d-none");
     updateBtn.classList.remove("d-none");
+    siteName.classList.remove('is-invalid');
+    siteURL.classList.remove('is-invalid');
 }
 
 // updates the bookmark and saves it
 function updateBookmark() {
-    if (validate(siteName, nameRegex) && validate(siteURL, urlRegex) && checkDuplication()) {
+    if ((validate(siteName, nameRegex) && validate(siteURL, urlRegex) && checkDuplication()) || (siteName.value == bookmarkList[globalIndex].name) && validate(siteURL, urlRegex)) {
+        Swal.fire({
+            title: "Updated Successfully",
+            text: "The bookmark has been updated",
+            icon: "success"
+        });
         bookmarkList[globalIndex].name = siteName.value;
         bookmarkList[globalIndex].url = siteURL.value;
         saveToLocalStorage();
-        displayBookmarks();
-        clearInputs();
-        addBtn.classList.remove("d-none");
-        updateBtn.classList.add("d-none");
-    }
-    else if ((siteName.value == bookmarkList[globalIndex].name) && (siteURL.value == bookmarkList[globalIndex].url)) {
         displayBookmarks();
         clearInputs();
         addBtn.classList.remove("d-none");
@@ -234,40 +254,27 @@ updateBtn.addEventListener('click', updateBookmark);
 // ----------------------------------- //
 
 
-// ----------Give each of the 3 circles a different color---------- //
-// An array with predefined colors 
-const colors = ['#f15f5d', '#febe2e', '#4db748'];
-var circles = document.querySelectorAll('.circle');
-circles.forEach((circle, index) => {
-    circle.style.backgroundColor = colors[index];
-});
-// --------------------------------------------------------------- //
-
-
-// ----------Closing the modal box---------- //
-// close function
-function closeModalBox() {
-    modalBoxOverlay.classList.replace('d-flex', 'd-none');
-}
-// open function
+// ----------Opening the modal box---------- //
 function openModalBox() {
-    modalBoxOverlay.classList.replace('d-none', 'd-flex');
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        html: `
+        <h5 class="py-1">Something went wrong!</h5>
+        <span>Rules:</span>
+        <ul class="rules py-3 list-unstyled ">
+            <li>
+                <p>No Duplicates</p>
+            </li>
+            <li>
+                 <p>Site name must contain at least 3 characters</p>
+            </li>
+            <li>
+                <p>Site URL must be a valid one (with or without "https://")</p>
+            </li>
+        </ul>
+      `,
+    });
 }
-
-// Close Button
-closeBtn.addEventListener("click", closeModalBox);
-
-// Clicking outside the box (clicking on the overlay)
-window.addEventListener('click', (e) => {
-    if (e.target === modalBoxOverlay) {
-        closeModalBox();
-    }
-});
-
-// Pressing escape 
-window.addEventListener('keydown', (e) => {
-    if ((e.key === 'Escape')) {
-        closeModalBox();
-    }
-});
 // --------------------------------------- //
