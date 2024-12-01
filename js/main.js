@@ -112,7 +112,10 @@ addBtn.addEventListener('click', addBookmark);
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
-        addBookmark();
+        if (updateBtn.classList.contains('d-none'))
+            addBookmark();
+        else if (addBtn.classList.contains('d-none'))
+            updateBookmark();
     }
 });
 // ------------------------------------------------- //
@@ -161,6 +164,7 @@ function addAllEventListeners() {
             visitWebsite(index);
         });
     });
+
     // Modify buttons
     modifyBtns = Array.from(document.querySelectorAll(".modify-btn"));
     modifyBtns.forEach((button, index) => {
@@ -168,6 +172,7 @@ function addAllEventListeners() {
             setInputsForUpdate(index);
         });
     });
+
     // Delete buttons
     deleteBtns = Array.from(document.querySelectorAll(".delete-btn"));
     deleteBtns.forEach((button, index) => {
